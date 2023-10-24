@@ -31,5 +31,6 @@ that they can be cleaned from the data.
 * `xterm.js` site - [https://xtermjs.org/](https://xtermjs.org)
 * Terminal Sample code for vscode api - [https://github.com/Microsoft/vscode-extension-samples/blob/master/terminal-sample/src/extension.ts](https://github.com/Microsoft/vscode-extension-samples/blob/master/terminal-sample/src/extension.ts)
 * Using the proposed api (Never did) - [https://code.visualstudio.com/api/advanced-topics/using-proposed-api](https://code.visualstudio.com/api/advanced-topics/using-proposed-api)
+* Source for typescript appendage [here](https://microsoft.github.io/PowerBI-JavaScript/modules/_node_modules__types_node_fs_d_._fs_.appendfile.html)
 
 
