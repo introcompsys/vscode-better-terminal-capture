@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 // Common data to be used elsewhere
 let terminalData = {};
 
+
 export function activate(context: vscode.ExtensionContext) {
   let options = vscode.workspace.getConfiguration('terminalCapture');
   terminalData = {};
@@ -24,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
   }
 
-  context.subscriptions.push(vscode.commands.registerCommand('terminal-recorder.helloWorld', () => {
+  context.subscriptions.push(vscode.commands.registerCommand('extension.terminalRecorder.record', () => {
     if (options.get('enable') === false) {
       console.log('Command has been disabled, not running');
     }
@@ -55,32 +56,39 @@ function runCacheMode() {
     return;
   }
 
-  terminal.processId.then((terminalId: number | undefined) => {
-    if (terminalId !== undefined) {
-      vscode.commands.executeCommand('workbench.action.files.newUntitledFile').then(() => {
-        let editor = vscode.window.activeTextEditor;
-        if (editor === undefined) {
-          vscode.window.showWarningMessage('Failed to find an active editor to paste terminal content');
-          return;
-        }
+  terminal.processId.then(terminalId => {
+    vscode.commands.executeCommand('workbench.action.files.newUntitledFile').then(() => {
+      let editor = vscode.window.activeTextEditor;
+      if (editor === undefined) {
+        vscode.window.showWarningMessage('Failed to find active editor to paste terminal content');
+        return;
+      }
 
-        let cache = cleanupCacheData((<any>terminalData)[terminalId]);
-        editor.edit(builder => {
-          builder.insert(new vscode.Position(0, 0), cache);
-        });
+      let cache = cleanupCacheData((<any>terminalData)[terminalId]);
+      editor.edit(builder => {
+        builder.insert(new vscode.Position(0, 0), cache);
       });
-    } else {
-      vscode.window.showWarningMessage('Terminal ID is undefined, cannot capture');
-    }
+    });
   });
 }
+
 
 function runClipboardMode() {
   vscode.commands.executeCommand('workbench.action.terminal.selectAll').then(() => {
     vscode.commands.executeCommand('workbench.action.terminal.copySelection').then(() => {
       vscode.commands.executeCommand('workbench.action.terminal.clearSelection').then(() => {
-        vscode.commands.executeCommand('workbench.action.files.newUntitledFile').then(() => {
-          vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+        vscode.commands.executeCommand('workbench.action.terminal.clear').then(() => {
+          const untitledFiles = vscode.workspace.textDocuments.filter(doc => doc.isUntitled);
+          if (untitledFiles.length > 0) {
+            const untitledFile = untitledFiles[0];
+            vscode.window.showTextDocument(untitledFile).then(editor => {
+              vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+            });
+          } else {
+            vscode.commands.executeCommand('workbench.action.files.newUntitledFile').then(() => {
+              vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+            });
+          }
         });
       });
     });
@@ -94,15 +102,9 @@ function cleanupCacheData(data: string): string {
 
 function registerTerminalForCapture(terminal: vscode.Terminal) {
   terminal.processId.then(terminalId => {
-    if (terminalId !== undefined) {
     (<any>terminalData)[terminalId] = "";
     (<any>terminal).onDidWriteData((data: any) => {
-      // TODO:
-      //   - Need to remove (or handle) backspace
-      //   - not sure what to do about carriage return???
-      //   - might have some odd output
       (<any>terminalData)[terminalId] += data;
     });
-  }
   });
 }
