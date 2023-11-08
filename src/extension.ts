@@ -76,7 +76,7 @@ function runClipboardMode() {
   vscode.commands.executeCommand('workbench.action.terminal.selectAll').then(() => {
     vscode.commands.executeCommand('workbench.action.terminal.copySelection').then(() => {
       vscode.commands.executeCommand('workbench.action.terminal.clearSelection').then(() => { 
-        vscode.commands.executeCommand('workbench.action.files.newUntitledFile').then(() => { // this line is clearly responsible for creating the new file. we just need to figure out how to make a file and assign a key to the file so we can append later.
+        vscode.commands.executeCommand('workbench.action.files.saveAs').then(() => { // this line is clearly responsible for creating the new file. we just need to figure out how to make a file and assign a key to the file so we can append later.
           vscode.commands.executeCommand('editor.action.clipboardPasteAction');
         });
       });
@@ -84,6 +84,16 @@ function runClipboardMode() {
   });
 }
 
+/*
+function runAppendMode() {
+  vscode.commands
+
+  use wc -l
+  
+}
+
+
+*/
 
 function cleanupCacheData(data: string): string {
   return data.replace(new RegExp('\x1b\[[0-9;]*m', 'g'), '');
