@@ -13,7 +13,7 @@ flow quite as much.  So I decided to try my hand at writing a vscode extension.
 
 ## Features
 
-Take the output from the last active terminal and dump it into a new file.  
+Take the output from the last active terminal and dump it into a file, saving all outputs into one file.  
 
 ![Capture using Clipboard](images/vscode-terminal-capture-clipboard2.gif)  
 
