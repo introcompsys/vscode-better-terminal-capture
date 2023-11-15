@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
   }
 
-  context.subscriptions.push(vscode.commands.registerCommand('extension.terminalRecorder.record', () => {
+  context.subscriptions.push(vscode.commands.registerCommand('extension.terminalCapture.runCapture', () => {
     if (options.get('enable') === false) {
       console.log('Command has been disabled, not running');
     }
