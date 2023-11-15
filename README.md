@@ -1,4 +1,4 @@
-VSCode - Terminal Capture
+VSCode - Better Terminal Capture
 =================================================
 
 As a vim user, one of the features that I truly enjoy is the integrated
