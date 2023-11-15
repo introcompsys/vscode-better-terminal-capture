@@ -15,7 +15,7 @@ flow quite as much.  So I decided to try my hand at writing a vscode extension.
 
 Take the output from the last active terminal and dump it into a new file.  
 
-![Capture using Clipboard](images/vscode-terminal-capture-clipboard.gif)  
+![Capture using Clipboard](images/vscode-terminal-capture-clipboard2.gif)  
 
 There are currently two modes that the extension can run in.  
 
