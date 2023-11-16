@@ -76,7 +76,6 @@ function runClipboardMode() {
   vscode.commands.executeCommand('workbench.action.terminal.selectAll').then(() => {
     vscode.commands.executeCommand('workbench.action.terminal.copySelection').then(() => {
       vscode.commands.executeCommand('workbench.action.terminal.clearSelection').then(() => { 
-
         // Specifying the file path
         const filePath = '~/Downloads/terminal.txt';
         vscode.commands.executeCommand('workbench.action.files.saveAs', vscode.Uri.file(filePath)).then(() => { // this line is clearly responsible for creating the new file. we just need to figure out how to make a file and assign a key to the file so we can append later.
