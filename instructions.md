@@ -22,6 +22,11 @@ Then you will run this:
 npm install -g @vscode/vsce
 ```
 
+If you are recieving errors when running the command you should try running the following:
+```{toggle}
+sudo npm install -g @vscode/vsce
+```
+
 After that is finished running you will then need to run:
 ```{toggle}
 vsce package
@@ -31,7 +36,7 @@ Then you will install the extension from the VSIX file:
 
 ![Instructions to install](https://route360.dev/static/98955dbe38c82bb15bfc98325f8a41e7/1cfc2/vscode01.en.png)
 
-After you click install the extension will be updated in your vscode extensions.
+After you click install with the vsix file from the repo the extension will be updated in your vscode extensions.
 
 ## How to use
 
