@@ -2,7 +2,36 @@
 
 ## Getting Started 
 
-To get started you need to search vscode terminal capture in the vscode extension store, and download the extension there. Once you have clicked on install and the installation has finished the extension is now ready for use.
+Because our extension is not published we will need to go through a few extra steps to install terminal capture.
+
+To get started you need to clone the repository to your local machine by running the following in the terminal:
+```{toggle}
+https://github.com/introcompsys/vscode-better-terminal-capture.git
+```
+
+After you have cloned this repository to your machine you need to cd into the cloned repo.
+
+In here you will run:
+```{toggle}
+npm install
+```
+This will install all the required modules.
+
+Then you will run this:
+```{toggle}
+npm install -g @vscode/vsce
+```
+
+After that is finished running you will then need to run:
+```{toggle}
+vsce package
+```
+
+Then you will install the extension from the VSIX file:
+
+![Instructions to install](https://route360.dev/static/98955dbe38c82bb15bfc98325f8a41e7/1cfc2/vscode01.en.png)
+
+After you click install the extension will be updated in your vscode extensions.
 
 ## How to use
 
