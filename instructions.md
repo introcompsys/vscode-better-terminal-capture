@@ -6,7 +6,7 @@ Because our extension is not published we will need to go through a few extra st
 
 To get started you need to clone the repository to your local machine by running the following in the terminal:
 ```{toggle}
-https://github.com/introcompsys/vscode-better-terminal-capture.git
+git clone https://github.com/introcompsys/vscode-better-terminal-capture.git
 ```
 
 After you have cloned this repository to your machine you need to cd into the cloned repo.
